@@ -1,7 +1,7 @@
 import { getContext } from "./week03-module.js";
 
 // ไปดูคำสั่งเกี่ยวกับอุปกรณ์ได้ที่ https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices
-// ไปดูคำสั่งเพื่อ access อุปกรณ์ได้ที่ https://developer.mozilla.org/en-US/docs/Web/API/Navigator
+// ไปดูคำสั่งเพื่อ access อุปกรณ์ได้ที่ https://developer.m                                                                       ozilla.org/en-US/docs/Web/API/Navigator
 
 document.addEventListener("DOMContentLoaded", function() {
 	// เข้าถึง context ของ canvas
@@ -51,12 +51,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	// โดยใช้ navigator.mediaDevices.enumerateDevices()
 	// จะได้รับรายการอุปกรณ์ที่มีอยู่ทั้งหมดเป็นรายการหรือ array
 	// และกรองเฉพาะกล้อง (videoinput) เพื่อแสดงใน select box โดยใช้ deviceId เป็นค่า value ของ option
+	const select = document.querySelector("#myCamDevices"); // เข้าถึง select box ที่มี ID เป็น cameraSelect
 	navigator.mediaDevices.enumerateDevices()
 	.then(devices => {
 		devices.forEach(device => {
 			// แสดงข้อมูลของอุปกรณ์ใน console
 			console.log(`${device.kind}: ${device.label} id = ${device.deviceId}`);
-			const select = document.querySelector("#myCamDevices"); // เข้าถึง select box ที่มี ID เป็น cameraSelect
+		
 			if (device.kind === 'videoinput') {
 				const option = document.createElement('option');
 				option.value = device.deviceId; // ใช้ deviceId เป็นค่า value ของ option
@@ -64,13 +65,12 @@ document.addEventListener("DOMContentLoaded", function() {
 				select.appendChild(option);
 			}
 			// เพิ่ม event listener ให้กับ select box เพื่อให้สามารถเลือกกล้องได้
-			select.addEventListener('change', userSelectedCamera);
 		});
 	})
 	.catch(err => {
 		console.error('ไม่สามารถเข้าถึงอุปกรณ์ได้:', err);
 	});
-
+	select.addEventListener('change', userSelectedCamera);
 	// ฟังก์ชันที่ใช้เมื่อผู้ใช้เลือกกล้องจาก select box
 	function userSelectedCamera() {
 		const selectedDeviceId = this.value; // รับค่า deviceId ที่ผู้ใช้เลือก

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			y: 50,
 			width: 200,
 			height: 100,
-			color: "rgba(255, 0, 0, 0.3)" // สีแดงโปร่งแสง
+			color: "rgba(255, 0, 0, 0.5)" // สีแดงโปร่งแสง
 		},
 		{
 			name: "Sample B",
@@ -80,11 +80,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		// เพิ่ม overlay ใหม่
 		overlayData.push({
 			name: "New Overlay",
-			type: "rectangle",
+			type: "circle",
 			x: Math.random() * ctx.canvas.width,
 			y: Math.random() * ctx.canvas.height,
 			width: 100,
 			height: 50,
+			radius: 300,
 			color: "rgba(0, 255, 0, 0.3)" // สีเขียวโปร่งแสง
 		});
 	});
