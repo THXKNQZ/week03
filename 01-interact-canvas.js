@@ -41,7 +41,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		// วาดข้อความแสดงสถานะของปุ่มที่กด
 		ctx.font = "20px Tahoma";
 		ctx.fillStyle = "black";
-		ctx.fillText("Keys: " + Object.keys(keys).filter(key => keys[key]).join(", "), 10, 30);
+		ctx.fillText("Keys: " + Object.keys(keys) // return array ของ key ที่กด
+		.filter(key => { // กรองเฉพาะปุ่มที่กดอยู่
+			return keys[key]
+		})
+		.join(", "), 10, 30); // รวมปุ่มที่กดเป็นสตริงเดียวกัน
 		// Object.keys(keys) จะได้รายชื่อปุ่มทั้งหมดที่ถูกกด
 		// filter จะกรองเฉพาะปุ่มที่มีค่าเป็น true (กดอยู่)
 		// join จะรวมปุ่มที่กดเป็นสตริงเดียวกัน
@@ -54,11 +58,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		// วาดวงกลมที่ตำแหน่งเมาส์
 		if (mouse.isDown) {
-			ctx.beginPath();
-			ctx.arc(mouse.x, mouse.y, 10, 0, Math.PI * 2);
 			ctx.fillStyle = "blue";
-			ctx.fill();
-			ctx.closePath();
+			ctx.fillRect(mouse.x - 15, mouse.y - 15, 30, 30);
 		}
 
 		requestAnimationFrame(draw); // เรียกใช้ draw ต่อไป

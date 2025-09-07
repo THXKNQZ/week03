@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		// เพิ่ม overlay ใหม่
 		overlayData.push({
 			name: "New Overlay",
-			type: "circle",
+			type: "rectangle",
 			x: Math.random() * ctx.canvas.width,
 			y: Math.random() * ctx.canvas.height,
 			width: 100,

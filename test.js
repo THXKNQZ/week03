@@ -1,39 +1,41 @@
 import {getContext, keys} from "./week03-module.js";
 
-document.addEventListener("DOMContentLoaded", (ev) => {
-    //เขียนโค๊ดตรงนี้ค้าบ    
-
+document.addEventListener("DOMContentLoaded", (ev) => { 
     const ctx = getContext("#myCanvas");
-
     const player = {
         x : 400,
         y : 300,
-        size : 50, //with and height;
+        width : 50,
+        height : 50,
         color : "red",
     }
-    function draw() {
-        // clearRect เพื่อเคลียร์แคนวาสก่อนวาดใหม่
-        ctx.fillStyle = "rgb(197, 209, 223)";
-        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-        if (keys["a"]) {
-            player.x -= 0.1;
-        }
-        //transform render
-        ctx.save();
-        ctx.translate(player.x, player.y);
-        
-        // วาด player
-        ctx.fillStyle = player.color;
-        ctx.restore();
-        ctx.fillRect(
-            - player.size / 2, 
-             - player.size / 2,
-             player.size,
-            player.size);
-        
-
+    function draw (){
+        //clear canvas3e
+        ctx.fillStyle = "rgba(113, 232, 236, 1)";
         requestAnimationFrame(draw);
+        ctx.fillRect(0,0,ctx.canvas.width, ctx.canvas.height);
+
+        //update data/input
+
+        if (keys['a']){
+            player.x -= 0.2;
+        }
+        if (keys['d']){
+            player.x += 0.2;
+        }
+        if (keys['w']){
+            player.y -= 0.3;
+        }
+        if (keys['s']){
+            player.y += 0.3;
+        }
+
+        //tranform$ render
+        ctx.save();
+        ctx.translate(player.x,player.y)
+        ctx.fillStyle = player.color;
+        ctx.fillRect(-player.width/2,-player.height/2,player.width,player.height);
+        ctx.restore();
     }
     draw();
-});
+} );

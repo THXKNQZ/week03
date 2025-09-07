@@ -54,9 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	const select = document.querySelector("#myCamDevices"); // เข้าถึง select box ที่มี ID เป็น cameraSelect
 	navigator.mediaDevices.enumerateDevices()
 	.then(devices => {
-		devices.forEach(device => {
-			// แสดงข้อมูลของอุปกรณ์ใน console
-			console.log(`${device.kind}: ${device.label} id = ${device.deviceId}`);
+		devices.forEach(device => {console.log(`${device.kind}: ${device.label} id = ${device.deviceId}`);
 		
 			if (device.kind === 'videoinput') {
 				const option = document.createElement('option');
